@@ -1,0 +1,99 @@
+body {
+    --bg-color1: #121416;
+    --font-color: #f4f4f4;
+}
+button{
+  cursor: pointer;
+}
+
+$base-grey: #262626;
+$secondary-grey: #3C3C3C;
+$border-grey: #4D4D4D;
+.green .square-1{
+  background-color: #7FAA65;
+}
+.green .square-2{
+  background-color: #b8d998bd;
+}
+.orange .square-1{
+  background-color: #AA9765;
+}
+.orange .square-2{
+  background-color: #D9BB98bd;
+}
+.purple .square-1{
+  background-color: #656CAA;
+}
+.purple .square-2{
+  background-color: #7481EDbd;
+}
+.square-1{
+  position: absolute;
+  top: 29px;
+  left: 26px;
+  width: 48px;
+  height: 48px;
+}
+.square-2{
+  position: absolute;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  width: 48px;
+  height: 48px;
+  top: 23px;
+  left: 32px;
+}
+.quantity{    
+  position: absolute;
+  border-top-left-radius: 6px;
+  outline: 1px solid $border-grey;
+  color: #4D4D4D;
+  padding: 0px 5px;
+  right: 0px;
+  bottom: 0px;
+  font-size: 10px;
+}
+.skeleton{
+    overflow: hidden;
+    background: rgb(60,60,60);
+    border: none;
+    border-radius: 8px;
+}
+.divider{
+  color: rgb(60,60,60);
+  display: block;
+  flex: 1 1 100%;
+  height: 1px;
+  width: 220px;
+  max-height: 1px;
+  opacity: var(--v-border-opacity);
+  transition: inherit;
+  border-style: solid;
+  border-width: thin 1px 1px 1px;
+}
+.loading {
+    box-shadow: 0 4px 10px 0 rgba(33, 33, 33, 0.15);
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    height: 100%;
+    width: 210px;
+  }
+  .loading:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -150px;
+    top: 0;
+    height: 100%;
+    width: 150px;
+    background: linear-gradient(to right, #3C3C3C 15%, #44444456 50%, #3C3C3C 85%);
+    animation: load 1.5s infinite linear;
+  }
+@keyframes load {
+    from {
+      left: -150px;
+    } to {
+        left: 100%;
+    }
+}
