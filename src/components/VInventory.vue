@@ -11,6 +11,7 @@
             <div 
                 v-for="item in cell"
                 :key="item.id"
+                draggable="true"
                 @dragstart="dragItem($event, item)"
                 @click="modal(item.id)"
                 class="item"
@@ -42,7 +43,7 @@
 
 <script setup>
 import VModal from './VModal.vue'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
  
 const stock = ref([
   {item: { id: 0, title: 'Item 1', quantity: 4, color: 'green', }, },
@@ -72,6 +73,18 @@ const stock = ref([
   {item: {}},
 ])
 
+onMounted(() => {
+  const savedStock = localStorage.getItem('stock');
+  if (savedStock) {
+    stock.value = JSON.parse(savedStock);
+  }
+});
+
+const updateStock = (newStock) => {
+    stock.value = newStock;
+  localStorage.setItem('stock', JSON.stringify(newStock));
+}
+
 const dragItem = (event, item) => {
   event.dataTransfer.dropEffect = 'move'
   event.dataTransfer.effectAllowed = 'move'
@@ -88,6 +101,7 @@ const dropItem = (event, cell) => {
     stock.value[newCell] = item 
     stock.value[oldCell] = {item: {}}
   }
+  updateStock(stock.value)
 }
 
 let infoIndex = ref(0)
@@ -110,6 +124,7 @@ const updateItemQuantity = (decrementQuantity) => {
         stock.value[infoIndex] = {item: {}}
         showModal.value = false
     } 
+    updateStock(stock.value)
 }
 </script>
 

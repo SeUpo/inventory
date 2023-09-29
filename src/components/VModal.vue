@@ -7,9 +7,8 @@
             >
             </div>
         </transition>
-        <transition name="slide-fade" appear>
+        <transition name="fade-left" appear>
             <div class="modal" 
-                role="dialog" 
                 v-if="showModal"
             >
                 <div class="fr-1">
@@ -19,7 +18,6 @@
                         src="../assets/Vector.svg" 
                         alt="x"
                     />
-
                     <div class="squares">
                         <span :class="item.color">
                             <span class="square-1"></span>
@@ -58,7 +56,6 @@
                         <div class="loading">
                         </div>
                     </div>
-
                     <div 
                         class="skeleton"
                         style="width: 180px; height: 10px;"
@@ -66,7 +63,6 @@
                         <div class="loading">
                         </div>
                     </div>
-
                     <div 
                         class="skeleton"
                         style="width: 80px; height: 10px;"
@@ -77,10 +73,7 @@
                     <div class="divider"></div>
                 </div>
 
-
                 <div class="fr-2">
-
-
                     <button 
                         v-show="!deleteModal"
                         @click="showDeleteModal"
@@ -88,11 +81,10 @@
                     >
                         Удалить предмет
                     </button>
-                    
-
-                    <div
-                        v-show="deleteModal"
-                    >
+                    <transition name="fade-up" appear>
+                        <div class="deleteModal-overlay" 
+                            v-if="deleteModal" 
+                        >
                         <label>
                             <input 
                                 v-model.number="decrementQuantity" 
@@ -112,7 +104,8 @@
                         >
                             Подтвердить
                         </button>
-                    </div>
+                        </div>
+                    </transition>
                 </div>
             </div>
         </transition>
@@ -158,7 +151,6 @@ const closeDeleteModal = () => {
     width: fit-content;
     max-width: 250px;
     padding: 2rem;
-    border-radius: 10px;
     outline: 1px solid $border-grey;
     background: #262626;
     z-index: 999;
@@ -179,15 +171,42 @@ const closeDeleteModal = () => {
   z-index: 998;
   cursor: pointer;
 }
-.slide-fade-enter-active {
+.deleteModal-overlay{
+    position: absolute;
+    justify-items: center;
+    justify-content: center;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    width: fit-content;
+    max-width: 250px;
+    padding: 20px;
+    outline: 1px solid $border-grey;
+    background: #262626;
+    z-index: 999;
+    transform: none;
+}
+.fade-left-enter-active {
   transition: all 0.3s ease-out;
 }
-.slide-fade-leave-active {
+.fade-left-leave-active {
   transition: all 0.3s ease-out;
 }
-.slide-fade-enter-from,
-.slide-fade-leave-to {
+.fade-left-enter-from,
+.fade-left-leave-to {
   transform: translateX(100px);
+  opacity: 0;
+}
+.fade-up-enter-active {
+  transition: all 0.3s ease-out;
+}
+.fade-up-leave-active {
+  transition: all 0.3s ease-out;
+}
+.fade-up-enter-from,
+.fade-up-leave-to {
+  transform: translateY(100px);
   opacity: 0;
 }
 .close-btn {
@@ -196,7 +215,6 @@ const closeDeleteModal = () => {
   right: 14px;
   cursor: pointer;
 }
-
 .squares .square-1,.square-2{
     position: absolute;
     width: 115.56px;
@@ -236,9 +254,8 @@ const closeDeleteModal = () => {
     border-radius: 8px;
     width: 88px;
     height: 33px;
-    top: 80px;
-    left: 21px;
-    padding: 8px 28px 8px 28px;
+    margin: 20px 8px 0 0;
+    padding: 8px 18px 8px 18px;
     border-radius: 8px;
 }
 .btn-submit{
@@ -246,11 +263,13 @@ const closeDeleteModal = () => {
     background-color: #FA7272;
     border: none;
     border-radius: 8px;
-    width: 88px;
+    width: 112px;
     height: 33px;
-    top: 80px;
-    left: 21px;
-    padding: 8px 28px 8px 28px;
+    margin: 20px 0 0 0;
+    padding: 8px 15px 8px 15px;
     border-radius: 8px;
+}
+.btn-cancel, .btn-submit{
+    box-shadow: 0px 0px 11px 4px rgba(187, 81, 77, 0.363);
 }
 </style>
