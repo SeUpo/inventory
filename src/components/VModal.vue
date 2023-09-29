@@ -177,12 +177,10 @@ const closeDeleteModal = () => {
   bottom: 0;
   left: 0;
   z-index: 998;
-  background: #161616;
-  opacity: 0.2;
   cursor: pointer;
 }
 .slide-fade-enter-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.3s ease-out;
 }
 .slide-fade-leave-active {
   transition: all 0.3s ease-out;
@@ -203,9 +201,6 @@ const closeDeleteModal = () => {
     position: absolute;
     width: 115.56px;
     height: 115.56px;
-}
-.squares[drop-active=true]{
-    display: none;
 }
 .square-1{
     top: 69.44px;

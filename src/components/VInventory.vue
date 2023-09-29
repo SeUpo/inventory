@@ -12,7 +12,6 @@
                 v-for="item in cell"
                 :key="item.id"
                 @dragstart="dragItem($event, item)"
-                draggable="true"
                 @click="modal(item.id)"
                 class="item"
             >
@@ -85,7 +84,7 @@ const dropItem = (event, cell) => {
   const oldCell =  stock.value.findIndex((a) => a == item)
   const newCell =  stock.value.findIndex((a) => a == cell)
 
-  if(!cell.item.id) {
+  if(!cell.item.title) {
     stock.value[newCell] = item 
     stock.value[oldCell] = {item: {}}
   }
@@ -117,6 +116,9 @@ const updateItemQuantity = (decrementQuantity) => {
 <style lang="scss" scoped>
 .stock{
     position: relative;
+    overflow: hidden;
+    outline: 1px solid #4D4D4D;
+    border-radius: 12px;
     list-style-type: none;
     place-content: space-between;
     display: grid;
