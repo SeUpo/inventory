@@ -57,17 +57,17 @@ $border-grey: #4D4D4D;
     height: 100%;
     width: 210px;
   }
-  .loading:before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: -150px;
-    top: 0;
-    height: 100%;
-    width: 150px;
-    background: linear-gradient(to right, #3C3C3C 15%, #44444456 50%, #3C3C3C 85%);
-    animation: load 1.5s infinite linear;
-  }
+.loading:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -150px;
+  top: 0;
+  height: 100%;
+  width: 150px;
+  background: linear-gradient(to right, #3C3C3C 15%, #44444456 50%, #3C3C3C 85%);
+  animation: load 1.5s infinite linear;
+}
 @keyframes load {
     from {
       left: -150px;

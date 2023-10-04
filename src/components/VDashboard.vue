@@ -63,6 +63,7 @@
 
 <style lang="scss" scoped>
 .panel{
+  z-index: 1000;
   display: grid;
   justify-items: center;
   background-color: $base-grey;

@@ -5,7 +5,7 @@
       <VInventory/>
     </div>
     <div class="section">
-      <Vsearch/>
+      <VSearch/>
     </div>
   </main> 
 </template>
@@ -13,7 +13,7 @@
 <script setup>
 import VDashboard from './components/VDashboard.vue'
 import VInventory from './components/VInventory.vue'
-import Vsearch from './components/Vsearch.vue'
+import VSearch from './components/VSearch.vue'
 </script>
 
 <style lang="scss" scoped>
