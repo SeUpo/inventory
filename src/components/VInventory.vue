@@ -55,21 +55,9 @@ onMounted(() => {
     stock.value = JSON.parse(savedStock)
   }
 })
-
 const updateStock = (newStock) => {
   stock.value = newStock
   localStorage.setItem('stock', JSON.stringify(newStock))
-}
-
-let dragPreview = ref(null)
-let dragPreviewNode = ref(null)
-const dragItem = (event, item) => {
-  dragPreviewNode.value = event.target.cloneNode(true)
-  dragPreview.value.appendChild(dragPreviewNode.value)
-  event.dataTransfer.setDragImage(new Image(), 0, 0)
-  event.dataTransfer.dropEffect = 'move'
-  event.dataTransfer.effectAllowed = 'move'
-  event.dataTransfer.setData('itemID', item.id)
 }
 
 let x = ref(null)
@@ -84,11 +72,20 @@ const dragStyle = computed(() => {
     left: `${x.value}px`
   }
 })
-
+let dragPreview = ref(null)
+let dragPreviewNode = ref(null)
+const dragItem = (event, item) => {
+  dragPreviewNode.value = event.target.cloneNode(true)
+  dragPreview.value.appendChild(dragPreviewNode.value)
+  setTimeout(function(){dragPreview.value.firstChild.style.visibility = 'visible'}, 10);
+  event.dataTransfer.setDragImage(new Image(), 0, 0)
+  event.dataTransfer.dropEffect = 'move'
+  event.dataTransfer.effectAllowed = 'move'
+  event.dataTransfer.setData('itemID', item.id)
+}
 const dragEnd = () => {
   x.value = null
   y.value = null
-  dragPreview.value.style.dispay = 'none'
   dragPreview.value.removeChild(dragPreview.value.firstChild)
   dragPreview.value = null
   dragPreviewNode.value = null
@@ -187,6 +184,7 @@ const updateItemQuantity = (decrementQuantity) => {
     left: 32px;
   }
   .quantity {
+    background: $base-grey;
     position: absolute;
     border-top-left-radius: 6px;
     outline: 1px solid $border-grey;
@@ -200,6 +198,7 @@ const updateItemQuantity = (decrementQuantity) => {
 .drag-preview {
   pointer-events: none;
   position: absolute;
+  visibility: hidden;
   .squares {
     animation: color 1s infinite linear;
     background-color: $base-grey;
